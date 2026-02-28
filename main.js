@@ -7,6 +7,35 @@ const loadingOverlay = document.getElementById('loading-overlay');
 const resultSection = document.getElementById('result-section');
 const removeImageBtn = document.getElementById('remove-image-btn');
 
+// Theme Toggle Logic
+const themeToggle = document.getElementById('theme-toggle');
+const sunIcon = document.querySelector('.sun-icon');
+const moonIcon = document.querySelector('.moon-icon');
+
+// Check for saved theme
+const savedTheme = localStorage.getItem('theme') || 'light';
+document.documentElement.setAttribute('data-theme', savedTheme);
+updateThemeIcons(savedTheme);
+
+themeToggle.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcons(newTheme);
+});
+
+function updateThemeIcons(theme) {
+    if (theme === 'dark') {
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+    } else {
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+    }
+}
+
 // Mock Data for Results
 const animalTypes = [
     {
@@ -135,11 +164,11 @@ function showResults() {
         
         // Create bar with dynamic width
         row.innerHTML = `
-            <div class="label">${item.name}</div>
-            <div class="bar-bg">
+            <div class="label" style="color: var(--text-black)">${item.name}</div>
+            <div class="bar-bg" style="background-color: var(--bg-gray)">
                 <div class="bar-fill" style="width: 0%; background-color: ${item.color}"></div>
             </div>
-            <div class="percentage">${item.score}%</div>
+            <div class="percentage" style="color: var(--text-gray)">${item.score}%</div>
         `;
         chartContainer.appendChild(row);
         
