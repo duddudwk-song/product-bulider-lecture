@@ -1,21 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lotto Number Generator</title>
+    <title>AI 동물상 테스트</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Lotto Number Generator</h1>
-        <div class="lotto-display"></div>
-        <button id="generate-btn">Generate Numbers</button>
-        <div class="history">
-            <h2>History</h2>
-            <div id="history-list"></div>
+    <header class="app-header">
+        <div class="header-inner">
+            <h1 class="logo">AI 동물상 테스트</h1>
+            <nav>
+                <a href="#" class="active">홈</a>
+                <a href="#">랭킹</a>
+                <a href="#">관상</a>
+            </nav>
         </div>
-    </div>
+    </header>
+
+    <main class="container">
+        <section class="hero-section">
+            <h2>인공지능이 분석하는<br>나의 동물상 찾기</h2>
+            <p class="subtitle">나는 강아지상일까? 고양이상일까?<br>사진 한 장으로 알아보는 나의 숨겨진 매력</p>
+        </section>
+
+        <div class="upload-area-wrapper">
+            <div class="upload-area" id="upload-area">
+                <input type="file" id="image-upload" accept="image/*" hidden>
+                <div class="upload-content" id="upload-content">
+                    <div class="upload-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 16L12 8" stroke="#03c75a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9 11L12 8 15 11" stroke="#03c75a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M8 16H16" stroke="#03c75a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <p class="upload-text">사진을 올려놓거나 눌러서 업로드</p>
+                    <span class="upload-hint">(*사진은 어디에도 저장되지 않습니다)</span>
+                </div>
+                
+                <div class="preview-container" id="preview-container" style="display: none;">
+                    <img id="image-preview" src="" alt="Preview">
+                    <div class="loading-overlay" id="loading-overlay" style="display: none;">
+                        <div class="spinner"></div>
+                        <p>AI가 얼굴을 분석중입니다...</p>
+                    </div>
+                </div>
+            </div>
+            
+            <button id="remove-image-btn" class="secondary-btn" style="display: none;">다른 사진으로 다시하기</button>
+        </div>
+
+        <section class="result-section" id="result-section" style="display: none;">
+            <div class="result-card">
+                <div class="result-header">
+                    <span class="badge">분석 완료</span>
+                    <h3 id="result-title">당신은 매력적인 강아지상!</h3>
+                </div>
+                <div class="result-description" id="result-desc">
+                    순하고 귀여운 인상으로 사람들에게 인기가 많은 타입입니다.
+                </div>
+                <div class="chart-container" id="chart-container">
+                    <!-- Bars will be injected here -->
+                </div>
+                
+                <div class="share-area">
+                    <button class="share-btn naver">네이버로 공유</button>
+                    <button class="share-btn kakao">카카오톡 공유</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="ad-banner">
+            <div class="ad-placeholder">
+                광고 영역
+            </div>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <p>© 2026 AI Face Lab. All Rights Reserved.</p>
+        <p class="disclaimer">이 서비스는 재미를 위한 테스트이며 과학적 근거는 없습니다.</p>
+    </footer>
+
     <script src="main.js"></script>
 </body>
 </html>
